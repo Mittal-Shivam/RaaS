@@ -16,6 +16,7 @@ import static com.epoch.makers.raas.constant.Constants.*;
 public class RecommendationService {
 
     private final ObjectMapper objectMapper;
+
     public RecommendationService(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
@@ -25,32 +26,29 @@ public class RecommendationService {
         Double travel = 0.0;
         Double supermarkets = 0.0;
 
-        Transaction transactionList1 = objectMapper.readValue(new ClassPathResource("450000_10000000.json").getFile(), Transaction.class);
-        Transaction transactionList2 = objectMapper.readValue(new ClassPathResource("450000_20000000.json").getFile(), Transaction.class);
 
-        for (Data data: transactionList1.getData()) {
-            if("DEBIT".equalsIgnoreCase(data.getTransactionType())) {
-                if(AIRLINES.equalsIgnoreCase(data.getCategory().getMerchantCategory2Name())) {
+        Transaction transactionList1 = objectMapper.readValue(new ClassPathResource("450000_10000000.json").getInputStream(), Transaction.class);
+        Transaction transactionList2 = objectMapper.readValue(new ClassPathResource("450000_20000000.json").getInputStream(), Transaction.class);
+
+        for (Data data : transactionList1.getData()) {
+            if ("DEBIT".equalsIgnoreCase(data.getTransactionType())) {
+                if (AIRLINES.equalsIgnoreCase(data.getCategory().getMerchantCategory2Name())) {
                     travel -= data.getAmount();
-                }
-                else if(SUPERMARKETS.equalsIgnoreCase(data.getCategory().getMerchantCategory2Name())) {
+                } else if (SUPERMARKETS.equalsIgnoreCase(data.getCategory().getMerchantCategory2Name())) {
                     supermarkets -= data.getAmount();
-                }
-                else if(KIDS_SHOPPING.equalsIgnoreCase(data.getCategory().getMerchantCategory2Name())) {
+                } else if (KIDS_SHOPPING.equalsIgnoreCase(data.getCategory().getMerchantCategory2Name())) {
                     kids -= data.getAmount();
                 }
             }
         }
 
-        for (Data data: transactionList2.getData()) {
-            if("DEBIT".equalsIgnoreCase(data.getTransactionType())) {
-                if(AIRLINES.equalsIgnoreCase(data.getCategory().getMerchantCategory2Name())) {
+        for (Data data : transactionList2.getData()) {
+            if ("DEBIT".equalsIgnoreCase(data.getTransactionType())) {
+                if (AIRLINES.equalsIgnoreCase(data.getCategory().getMerchantCategory2Name())) {
                     travel -= data.getAmount();
-                }
-                else if(SUPERMARKETS.equalsIgnoreCase(data.getCategory().getMerchantCategory2Name())) {
+                } else if (SUPERMARKETS.equalsIgnoreCase(data.getCategory().getMerchantCategory2Name())) {
                     supermarkets -= data.getAmount();
-                }
-                else if(KIDS_SHOPPING.equalsIgnoreCase(data.getCategory().getMerchantCategory2Name())) {
+                } else if (KIDS_SHOPPING.equalsIgnoreCase(data.getCategory().getMerchantCategory2Name())) {
                     kids -= data.getAmount();
                 }
             }
@@ -67,7 +65,7 @@ public class RecommendationService {
         List<String> list = new ArrayList<>();
         list.add(travelCard);
         list.add(supermarketCard);
-        if(kids != 0.0)
+        if (kids != 0.0)
             list.add(childAndTeenProducts);
         return list;
     }
