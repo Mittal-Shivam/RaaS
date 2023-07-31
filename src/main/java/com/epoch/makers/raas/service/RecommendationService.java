@@ -54,10 +54,10 @@ public class RecommendationService {
             }
         }
 
-        String travelCard = "You've spent " + travel + " pounds on travel, try our Reward Black credit card for no fee on purchases abroad with this card and earn 1% back in " +
+        String travelCard = "You've spent £" + travel + " on travel in past 2 months, try our Reward Black credit card for no fee on purchases abroad with this card and earn 1% back in " +
                 "Rewards on supermarket spending";
 
-        String supermarketCard = "You've spent " + supermarkets + " pounds on purchases at supermarkets, try our Reward credit card to get 1-15% back at chosen MyRewards retailers and earn 1% back in " +
+        String supermarketCard = "You've spent £" + supermarkets + " on purchases at supermarkets in past 2 months, try our Reward credit card to get 1-15% back at chosen MyRewards retailers and earn 1% back in " +
                 "Rewards on supermarket spending";
 
         String childAndTeenProducts = "Explore our child and teen products such as Junior ISA, Child Trust Fund, Pocket money cards for kids and more to build a safe and secure future for your kid!";
